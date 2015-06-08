@@ -24,7 +24,6 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="fconnect.js" />
-    <Content Include="firebase-localnode.js" />
     <Content Include="index.html" />
     <Content Include="web.config" />
   </ItemGroup>

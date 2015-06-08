@@ -1,5 +1,11 @@
-﻿/// <reference path="jquery.d.ts" />
+﻿// Created by Yanko Aleksandrov
+// DoIt is a lightweight to do list application working inside the facebook canvas.
+// the app is built entirely on [Firebase](https://firebase.com).
+
+/// <reference path="jquery.d.ts" />
 /// <reference path="firebase.d.ts" />
+
+var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
 
 window.onload = () => {
     start();
@@ -10,48 +16,62 @@ function id(name: string): HTMLElement {
 }
 
 function start() {
-    var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
+
     var input = <HTMLInputElement> id('input');
-    var submit = <HTMLInputElement> id('submit');
+    var addBtn = <HTMLInputElement> id('addBtn');
     var info = <HTMLParagraphElement> id('info');
-    var taskBox = <HTMLUListElement> id('taskBox');
+    var taskBox = <HTMLDivElement> id('taskBox');
 
     // fetch existing tasks
-    var tasks = getTasks(firebase);
+    getTasks();
 
-    submit.onclick = () => {
-        
+    // events
+    addBtn.onclick = () => {
+        addTask(input.value);
     };
 
-    
-
-    // add new task
-
     // remove task
+    removeTask();
 
     // edit task
-
+    editTask();
 }
 
-function getTasks(firebase: Firebase) {
-
-    // push creates new timestamp-based, unique ID
-    var postRef = firebase.child('posts');
-    postRef.push().set({
-        autor: 'Yanko Aleksandrov',
+function getTasks() {
+    firebase.child('tasks').on('value', function (data) {
+        var tasks: Object = data.val();
+        for (var key in tasks) {
+            if (tasks.hasOwnProperty(key)) {
+                var obj = tasks[key];
+                for (var prop in obj) {
+                    if (obj.hasOwnProperty(prop)) {
+                        fillTaskBox(obj[prop]);
+                    }
+                }
+            }
+        }
     });
+}
+function addTask(text: string) {
 
+    var postRef = firebase.child('tasks');
     postRef.push().set({
-        autor: 'Elon',
-        title: 'I will go to Mars !'
-    });
+        text: text,
+    }, function (error) {
+            if (error) {
+                console.log('Data could not be saved.' + error);
+            } else {
+                console.log('Data saved successfully.');
 
-    return null;
+                getTasks();
+            }
+        });
 }
-
-function getNames() {
-
+function removeTask() {
 }
+function editTask() {
+}
+function fillTaskBox(text: string) {
 
-
-
+    $('#taskBox').append(text + '<br>');
+}

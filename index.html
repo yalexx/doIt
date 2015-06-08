@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>test facebook app</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
     <script src="app.js"></script>
 </head>
@@ -15,11 +16,11 @@
     <br />
     <p id="info"></p>
     <input id="input" type="text" value="" placeholder=" new task" />
-    <input id="submit" type="submit" value="Add" />
+    <input id="addBtn" type="submit" value="Add" />
 
     <hr />
-    <ul id="taskBox">
-    </ul>
+    <div id="taskBox">
+    </div>
 
     <div id="fb-root"></div>
     <div id="content"></div>
