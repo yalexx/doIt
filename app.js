@@ -16,7 +16,7 @@ function start() {
     var info = id('info');
     var taskBox = id('taskBox');
     // fetch existing tasks
-    getTasks();
+    //getTasks();
     // events
     addBtn.onclick = function () {
         addTask(input.value);

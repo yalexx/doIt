@@ -23,7 +23,7 @@ function start() {
     var taskBox = <HTMLDivElement> id('taskBox');
 
     // fetch existing tasks
-    getTasks();
+    //getTasks();
 
     // events
     addBtn.onclick = () => {

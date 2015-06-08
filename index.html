@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="app.css" type="text/css" />
     <link rel="stylesheet" href="normalize.css" type="text/css" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
     <script src="app.js"></script>
@@ -15,17 +16,22 @@
     <script src="fconnect.js"></script>
     <header>
         <nav>
-            <a id="settings" href=""><i class="fa fa-cog"></i></a>
+            <!-- <a id="settings" href=""><i class="fa fa-cog"></i></a> -->
             <!-- <h3 id="fb-welcome">Hello Yanko</h3> -->
+            <input id="input" type="text" value="" placeholder="add new task" />
+            <a id="addBtn" href="#"><i class="fa fa-plus"></i></a>
         </nav>
     </header>
-    <p id="info"></p>
-
-    <input id="input" type="text" value="" placeholder="add new task" />
-    <input id="addBtn" type="submit" value="Add" />
-
-    <hr />
     <div id="taskBox">
+        <ul>
+            <li>
+                Clean the dishes
+                <a class="checkDone" href=""><i class="fa fa-close"></i></a>
+            </li>
+            <li>Code the program</li>
+            <li>Go to the gym</li>
+            <li>Learn english</li>
+        </ul>
     </div>
 
     <div id="fb-root"></div>
