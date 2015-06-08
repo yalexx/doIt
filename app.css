@@ -1,7 +1,19 @@
 ﻿body {
-    font-family: 'Segoe UI', sans-serif;
+    font-siz: 16px;
 }
 
-span {
-    font-style: italic;
+header {
+    background: #808080;
+    width: 100%;
+    min-height: 40px;
+}
+
+#settings {
+    font-size: 30px;
+    color: #fff;
+    padding: 8px;
+}
+
+.fa-cog {
+    margin-top: 4px;
 }
