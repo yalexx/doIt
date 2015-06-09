@@ -7,6 +7,7 @@
 
 var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
 
+
 window.onload = () => {
     start();
 };
