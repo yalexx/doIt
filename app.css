@@ -52,6 +52,7 @@ header {
     color: #0BAB00;
     margin: 10px;
     height: 30px;
+    border: none;
     display: block;
     float: left;
 }
@@ -72,13 +73,13 @@ header {
     margin: 0;
 }
 
-#users li {
-    display: inline-block;
-}
+    #users li {
+        display: inline-block;
+    }
 
-#users li img {
-    float: right;
-    width: 30px;
-    height: 30px;
-    padding: 10px 10px 10px 0;
-}
+        #users li img {
+            float: right;
+            width: 30px;
+            height: 30px;
+            padding: 10px 10px 10px 0;
+        }

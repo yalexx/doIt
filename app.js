@@ -3,7 +3,21 @@
 // the app is built entirely on [Firebase](https://firebase.com).
 /// <reference path="jquery.d.ts" />
 /// <reference path="firebase.d.ts" />
+// ToDO fire remove task event when task removed from the db
+// Add facebook login integration
+// Add facebook photos
+// Cleanup the code
 var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
+// prompt login
+/*
+firebase.authWithOAuthPopup("facebook", function (error, authData) {
+    if (error) {
+        console.log("Login Failed!", error);
+    } else {
+        console.log("Authenticated successfully with payload:", authData);
+    }
+});
+*/
 window.onload = function () {
     start();
 };
@@ -18,6 +32,7 @@ function start() {
     addBtn.onclick = function () {
         addTask(input.value);
         input.value = null;
+        return;
     };
     // edit task
     editTask();
@@ -57,8 +72,7 @@ function addTask(text) {
     });
 }
 function fillTaskBox(text, id) {
-    var taskConstructor = '<li class="task">' + text + '<a id="' + id + '" onclick="removeTask(this)" class="checkDone" href= "#" > <i class="fa fa-share" > </i></a></li>';
-    console.log(id);
+    var taskConstructor = '<li class="task">' + text + '<a id="' + id + '" onclick="event.preventDefault(); removeTask(this)" class="checkDone" href= "#" > <i class="fa fa-share" > </i></a></li>';
     $('#taskBox ul').append(taskConstructor);
 }
 function removeTask(link) {
