@@ -23,11 +23,12 @@ function start() {
     var taskBox = <HTMLDivElement> id('taskBox');
 
     // fetch existing tasks
-    //getTasks();
+    getTasks();
 
     // events
     addBtn.onclick = () => {
         addTask(input.value);
+        input.value = null;
     };
 
     // remove task
@@ -38,14 +39,21 @@ function start() {
 }
 
 function getTasks() {
+    
     firebase.child('tasks').on('value', function (data) {
+        var listItemCount: number = $('#taskBox ul').children('li').length;
         var tasks: Object = data.val();
         for (var key in tasks) {
             if (tasks.hasOwnProperty(key)) {
                 var obj = tasks[key];
                 for (var prop in obj) {
                     if (obj.hasOwnProperty(prop)) {
-                        fillTaskBox(obj[prop]);
+
+                        if (listItemCount > 0) {
+                            listItemCount--;
+                            //console.log("has some items");
+                        }
+                        else  fillTaskBox(obj[prop]);
                     }
                 }
             }
@@ -53,7 +61,7 @@ function getTasks() {
     });
 }
 function addTask(text: string) {
-
+    if (text == '' || text == null) return;
     var postRef = firebase.child('tasks');
     postRef.push().set({
         text: text,
@@ -62,8 +70,7 @@ function addTask(text: string) {
                 console.log('Data could not be saved.' + error);
             } else {
                 console.log('Data saved successfully.');
-
-                getTasks();
+                //getTasks();
             }
         });
 }
@@ -72,6 +79,6 @@ function removeTask() {
 function editTask() {
 }
 function fillTaskBox(text: string) {
-
-    $('#taskBox').append(text + '<br>');
+    var taskConstructor = '<li>' + text + '<a class="checkDone" href= "" > <i class="fa fa-share" > </i></a></li>';
+    $('#taskBox ul').append(taskConstructor);
 }
