@@ -12,10 +12,6 @@ window.onload = () => {
     start();
 };
 
-function id(name: string): HTMLElement {
-    return document.getElementById(name);
-}
-
 function start() {
 
     var input = <HTMLInputElement> id('input');
@@ -31,16 +27,12 @@ function start() {
         addTask(input.value);
         input.value = null;
     };
-
-    // remove task
-    removeTask();
-
     // edit task
     editTask();
 }
 
 function getTasks() {
-    
+
     firebase.child('tasks').on('value', function (data) {
         var listItemCount: number = $('#taskBox ul').children('li').length;
         var tasks: Object = data.val();
@@ -49,12 +41,8 @@ function getTasks() {
                 var obj = tasks[key];
                 for (var prop in obj) {
                     if (obj.hasOwnProperty(prop)) {
-
-                        if (listItemCount > 0) {
-                            listItemCount--;
-                            //console.log("has some items");
-                        }
-                        else  fillTaskBox(obj[prop]);
+                        if (listItemCount > 0) listItemCount--;
+                        else fillTaskBox(obj[prop], key);
                     }
                 }
             }
@@ -75,11 +63,26 @@ function addTask(text: string) {
             }
         });
 }
-function removeTask() {
+function fillTaskBox(text: string, id: string) {
+    var taskConstructor = '<li class="task">' + text + '<a id="' + id + '" onclick="removeTask(this)" class="checkDone" href= "#" > <i class="fa fa-share" > </i></a></li>';
+    console.log(id);
+    $('#taskBox ul').append(taskConstructor);
+}
+function removeTask(link: HTMLLinkElement) {
+    var id = $(link)[0].id;
+    firebase.child('tasks').child(id).set(null);
+    var listElement = $(link).parent();
+    listElement.slideUp(200);
+    setTimeout(function () {
+        listElement.fadeOut(200, function () {
+            listElement.remove();
+        });
+    }, 200); 
 }
 function editTask() {
 }
-function fillTaskBox(text: string) {
-    var taskConstructor = '<li>' + text + '<a class="checkDone" href= "" > <i class="fa fa-share" > </i></a></li>';
-    $('#taskBox ul').append(taskConstructor);
+
+// utils
+function id(name: string): HTMLElement {
+    return document.getElementById(name);
 }

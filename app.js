@@ -7,9 +7,6 @@ var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
 window.onload = function () {
     start();
 };
-function id(name) {
-    return document.getElementById(name);
-}
 function start() {
     var input = id('input');
     var addBtn = id('addBtn');
@@ -22,8 +19,6 @@ function start() {
         addTask(input.value);
         input.value = null;
     };
-    // remove task
-    removeTask();
     // edit task
     editTask();
 }
@@ -36,11 +31,10 @@ function getTasks() {
                 var obj = tasks[key];
                 for (var prop in obj) {
                     if (obj.hasOwnProperty(prop)) {
-                        if (listItemCount > 0) {
+                        if (listItemCount > 0)
                             listItemCount--;
-                        }
                         else
-                            fillTaskBox(obj[prop]);
+                            fillTaskBox(obj[prop], key);
                     }
                 }
             }
@@ -62,12 +56,26 @@ function addTask(text) {
         }
     });
 }
-function removeTask() {
+function fillTaskBox(text, id) {
+    var taskConstructor = '<li class="task">' + text + '<a id="' + id + '" onclick="removeTask(this)" class="checkDone" href= "#" > <i class="fa fa-share" > </i></a></li>';
+    console.log(id);
+    $('#taskBox ul').append(taskConstructor);
+}
+function removeTask(link) {
+    var id = $(link)[0].id;
+    firebase.child('tasks').child(id).set(null);
+    var listElement = $(link).parent();
+    listElement.slideUp(200);
+    setTimeout(function () {
+        listElement.fadeOut(200, function () {
+            listElement.remove();
+        });
+    }, 200);
 }
 function editTask() {
 }
-function fillTaskBox(text) {
-    var taskConstructor = '<li>' + text + '<a class="checkDone" href= "" > <i class="fa fa-share" > </i></a></li>';
-    $('#taskBox ul').append(taskConstructor);
+// utils
+function id(name) {
+    return document.getElementById(name);
 }
 //# sourceMappingURL=app.js.map
