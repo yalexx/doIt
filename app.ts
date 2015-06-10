@@ -43,6 +43,14 @@ function start() {
         input.value = null;
         return;
     };
+
+    $(window).keypress(function (e) {
+        if (e.keyCode == 0 || e.keyCode == 13) {
+            addTask(input.value);
+            input.value = null;
+        }
+    });
+
     // edit task
     editTask();
 }
