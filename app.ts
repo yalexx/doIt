@@ -9,6 +9,8 @@
 // Add facebook login integration
 // Add facebook photos
 // Cleanup the code
+// Add multi user integration
+
 
 var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
 
