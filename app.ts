@@ -5,7 +5,8 @@
 /// <reference path="jquery.d.ts" />
 /// <reference path="firebase.d.ts" />
 
-// ToDO fire remove task event when task removed from the db
+// ToDO
+// fire remove task event when task removed from the db
 // Add facebook login integration
 // Add facebook photos
 // Cleanup the code
@@ -16,7 +17,7 @@
 var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
 
 // prompt login
-/*
+
 firebase.authWithOAuthPopup("facebook", function (error, authData) {
     if (error) {
         console.log("Login Failed!", error);
@@ -24,7 +25,7 @@ firebase.authWithOAuthPopup("facebook", function (error, authData) {
         console.log("Authenticated successfully with payload:", authData);
     }
 });
-*/
+
 
 window.onload = () => {
     start();

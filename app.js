@@ -1,26 +1,12 @@
-// Created by Yanko Aleksandrov
-// DoIt is a lightweight to do list application working inside the facebook canvas.
-// the app is built entirely on [Firebase](https://firebase.com).
-/// <reference path="jquery.d.ts" />
-/// <reference path="firebase.d.ts" />
-// ToDO fire remove task event when task removed from the db
-// Add facebook login integration
-// Add facebook photos
-// Cleanup the code
-// Add multi user integration
-// Add animations and transitions
-// Add preloading animation
 var firebase = new Firebase("https://flickering-fire-4850.firebaseIO.com/");
-// prompt login
-/*
 firebase.authWithOAuthPopup("facebook", function (error, authData) {
     if (error) {
         console.log("Login Failed!", error);
-    } else {
+    }
+    else {
         console.log("Authenticated successfully with payload:", authData);
     }
 });
-*/
 window.onload = function () {
     start();
 };
@@ -29,9 +15,7 @@ function start() {
     var addBtn = id('addBtn');
     var info = id('info');
     var taskBox = id('taskBox');
-    // fetch existing tasks
     getTasks();
-    // events
     addBtn.onclick = function () {
         addTask(input.value);
         input.value = null;
@@ -43,7 +27,6 @@ function start() {
             input.value = null;
         }
     });
-    // edit task
     editTask();
 }
 function getTasks() {
@@ -97,8 +80,6 @@ function removeTask(link) {
 }
 function editTask() {
 }
-// utils
 function id(name) {
     return document.getElementById(name);
 }
-//# sourceMappingURL=app.js.map
