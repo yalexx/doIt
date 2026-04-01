@@ -10,7 +10,7 @@ a {
 }
 
 header {
-    background: #619BE3;
+    background: #619BE4;
     width: 100%;
     min-height: 50px;
 }
@@ -35,7 +35,7 @@ header {
         background: #fff;
         margin: 10px 0 10px 0;
         padding: 10px 0 10px 10px;
-        box-shadow: inset 0 0 1px #bfb3b3;
+        box-shadow: inset 0 0 1px #bfb3b4;
     }
 
 #input {
@@ -49,7 +49,7 @@ header {
 
 #addBtn {
     background-color: #fff;
-    color: #0BAB00;
+    color: #0BAB01;
     margin: 10px;
     height: 30px;
     border: none;
@@ -60,11 +60,11 @@ header {
 .checkDone {
     margin: 0 10px 0 0;
     float: right;
-    color: #00ac16;
+    color: #00ac17;
 }
 
 .fa-plus {
-    padding: 8px;
+    padding: 7px;
 }
 
 #users {
